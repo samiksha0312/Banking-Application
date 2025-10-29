@@ -38,19 +38,19 @@ ________________________________________________________________________________
   # TECHNOLOGIES USED 📌
 
 ## Front End 📫
-
+```
 ![HTML5](https://img.shields.io/static/v1?style=for-the-badge&message=HTML5&color=E34F26&logo=HTML5&logoColor=FFFFFF&label=)
 ![CSS3](https://img.shields.io/static/v1?style=for-the-badge&message=CSS3&color=1572B6&logo=CSS3&logoColor=FFFFFF&label=)
 ![JavaScript](https://img.shields.io/static/v1?style=for-the-badge&message=JavaScript&color=222222&logo=JavaScript&logoColor=F7DF1E&label=)
-
+```
 
 ## Server Side ⚡
-
+```
 ![Java](https://img.shields.io/static/v1?style=for-the-badge&message=Java&color=007396&logo=java&logoColor=FFFFFF&label=)
 ![Servlets](https://img.shields.io/static/v1?style=for-the-badge&message=Servlets&color=7952B3&logo=Java&logoColor=FFFFFF&label=)
 ![Jsp](https://img.shields.io/static/v1?style=for-the-badge&message=Jsp&color=E34F26&logo=Java&logoColor=FFFFFF&label=)
 ![JDBC](https://img.shields.io/static/v1?style=for-the-badge&message=JDBC&color=222223&logo=jdbc&logoColor=FFFFFF&label=)
-
+```
 
 ## Development Tools 📺
 
@@ -73,25 +73,25 @@ Ensure these tools are installed before diving in:
 
 ## 📥 Step 1: Grab the Project Code
 Clone the repository from GitHub and open it in your preferred IDE:
-
+```
 git clone [https://github.com/samiksha0312/Banking-Application]
 cd Bank_project
-
+```
 
 Launch IntelliJ or Eclipse and import the project.
 
 ## 🗃 Step 2: Initialize the Database
 Fire up MySQL Workbench (or any SQL client you prefer).
 Create and select the database:
-
+```
 CREATE DATABASE bank_app;
 USE my_bank;
-
+```
 Now either import the SQL file (database/my_bank.sql) or manually execute the schema below.
 
 ## 🧬 Step 3: Create Tables
 Run the following SQL to set up your schema:
-
+```
 -- Bank Accounts Table
 CREATE TABLE bank_accounts (
     accountNumber BIGINT PRIMARY KEY,
@@ -118,13 +118,13 @@ CREATE TABLE transactions (
     FOREIGN KEY (transactionFrom) REFERENCES bank_accounts(accountNumber),
     FOREIGN KEY (transactionTo) REFERENCES bank_accounts(accountNumber)
 );
-
+```
 
 ✅ Your database is now structured and ready to go!
 
 ## 🔐 Step 4: Link Your App to the Database
 Navigate to:
-
+```
 src/main/java/util/DBConnection.java
 
 
@@ -133,7 +133,7 @@ Update the credentials to match your MySQL setup:
 private static final String URL = "jdbc:mysql://localhost:3306/my_bank";
 private static final String USER = "root";
 private static final String PASSWORD = "root";
-
+```
 💡 Ensure MySQL Server is running before launching the app.
 
 ## 🧭 Step 5: Configure Tomcat Server
@@ -162,7 +162,7 @@ Your Bank Management System is now live on your local machine. Time to explore a
 ____________________________________________________________________________________________________________
 
 #  Project Structure
-
+```
 src
 └── main
 |   └── java
@@ -210,7 +210,7 @@ src
 |             ├── updatePIN.jsp
 |             └── withdraw.jsp
 |__pom.xml
-        
+ ```       
 
 ## 🤝 Contribution of the Project
 
