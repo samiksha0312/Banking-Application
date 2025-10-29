@@ -1,16 +1,10 @@
 package service;
 
-
-
 import dao.BankAccountDao;
 import dao.TransactionsDao;
 import dto.BankAccount;
 import dto.Transaction;
-import util.DBConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 
 public class BankingServiceImpl implements BankingService {
@@ -28,12 +22,12 @@ public class BankingServiceImpl implements BankingService {
     }
 
     @Override
-    public boolean withdraw(long accountNumber, String pin, double amount) {
+    public boolean withdraw(long accountNumber, double amount, String pin) {
         return accountDao.updateBalanceWithPin(accountNumber, pin, amount, "debit");
     }
 
     @Override
-    public boolean transfer(long fromAcc, String pin, long toAcc, double amount) {
+    public boolean transfer(long fromAcc, long toAcc, double amount, String pin) {
         return accountDao.transferAmount(fromAcc, pin, toAcc, amount);
     }
 
@@ -62,17 +56,15 @@ public class BankingServiceImpl implements BankingService {
         return accountDao.updateAccount(account);
     }
 
-  
 	@Override
-	public boolean transfer(long fromAcc, long toAcc, double amount, String pin) {
+	public boolean transfer(long fromAcc, String pin, long toAcc, double amount) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean withdraw(long accountNumber, double amount, String pin) {
+	public boolean withdraw(long accountNumber, String pin, double amount) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 }
-

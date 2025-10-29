@@ -1,154 +1,164 @@
 <%@ page import="java.util.List"%>
 <%@ page import="dto.Transaction"%>
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Transaction History</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
+/* --- Base Layout --- */
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #e3f2fd, #f0f4f8);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #eef2f3 0%, #ffffff 100%);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* --- Header --- */
 h2 {
-    text-align: center;
-    margin-top: 30px;
-    color: #007BFF;
-    font-size: 28px;
+  margin-top: 40px;
+  font-size: 30px;
+  color: #333;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
+/* --- Table Container --- */
 table {
-    border-collapse: collapse;
-    width: 90%;
-    max-width: 1000px;
-    margin: 30px 0;
-    background-color: #ffffffcc;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  border-collapse: collapse;
+  width: 85%;
+  margin: 25px auto;
+  background-color: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
-th, td {
-    padding: 12px 15px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
+table:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
+/* --- Table Header --- */
 th {
-    background: linear-gradient(135deg, #4fc3f7, #81d4fa);
-    color: #fff;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-tr:hover {
-    background-color: #f1f7ff;
-    transition: 0.3s;
-}
-
+/* --- Table Cells --- */
 td {
-    color: #333;
-    font-weight: 400;
+  border-bottom: 1px solid #ddd;
+  padding: 12px 14px;
+  font-size: 15px;
+  color: #333;
 }
 
-.no-data {
-    text-align: center;
-    font-size: 16px;
-    color: #555;
-    padding: 15px 0;
+/* --- Alternate Row Shading --- */
+tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 
-.back-link {
-    margin-bottom: 30px;
+/* --- Hover Effect --- */
+tr:hover td {
+  background-color: #f1f7ff;
+  transition: background-color 0.3s ease;
 }
 
-.back-link a {
-    display: inline-block;
-    background: linear-gradient(135deg, #4fc3f7, #81d4fa);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.3s ease;
+/* --- No Transactions Row --- */
+td[colspan="7"] {
+  color: #999;
+  font-style: italic;
+  padding: 20px;
 }
 
-.back-link a:hover {
-    background: linear-gradient(135deg, #29b6f6, #4fc3f7);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+/* --- Back Link --- */
+a {
+  display: inline-block;
+  margin: 30px auto;
+  background: linear-gradient(90deg, #4b79a1, #283e51);
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
 }
 
-/* Responsive */
+a:hover {
+  background: linear-gradient(90deg, #5a91c1, #345066);
+  transform: translateY(-2px);
+}
+
+/* --- Responsive Design --- */
 @media (max-width: 768px) {
-    table, th, td {
-        font-size: 14px;
-        padding: 10px;
-    }
+  table {
+    width: 95%;
+    font-size: 14px;
+  }
 
-    h2 {
-        font-size: 24px;
-    }
+  th, td {
+    padding: 10px;
+  }
 
-    .back-link a {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
+  h2 {
+    font-size: 24px;
+  }
+
+  a {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
 }
 </style>
 </head>
 <body>
-    <h2>Transaction History</h2>
+  <h2>Transaction History</h2>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Date</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Description</th>
+    </tr>
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>From</th>
-            <th>To</th>
-            <th>Description</th>
-        </tr>
+    <%
+    List<Transaction> transactions = (List<Transaction>) request.getAttribute("transactions");
+    if (transactions != null && !transactions.isEmpty()) {
+      for (Transaction t : transactions) {
+    %>
+    <tr>
+      <td><%=t.getTransactionId()%></td>
+      <td><%=t.getTransactionType()%></td>
+      <td><%=t.getAmount()%></td>
+      <td><%=t.getTransactionDate()%></td>
+      <td><%=t.getTransactionFrom()%></td>
+      <td><%=t.getTransactionTo()%></td>
+      <td><%=t.getTransactionDescription()%></td>
+    </tr>
+    <%
+      }
+    } else {
+    %>
+    <tr>
+      <td colspan="7">No transactions found</td>
+    </tr>
+    <%
+    }
+    %>
+  </table>
 
-        <%
-        List<Transaction> transactions = (List<Transaction>) request.getAttribute("transactions");
-        if (transactions != null && !transactions.isEmpty()) {
-            for (Transaction t : transactions) {
-        %>
-        <tr>
-            <td><%=t.getTransactionId()%></td>
-            <td><%=t.getTransactionType()%></td>
-            <td>₹<%=t.getAmount()%></td>
-            <td><%=t.getTransactionDate()%></td>
-            <td><%=t.getTransactionFrom()%></td>
-            <td><%=t.getTransactionTo()%></td>
-            <td><%=t.getTransactionDescription()%></td>
-        </tr>
-        <%
-            }
-        } else {
-        %>
-        <tr class="no-data">
-            <td colspan="7">No transactions found</td>
-        </tr>
-        <%
-        }
-        %>
-    </table>
-
-    <div class="back-link">
-        <a href="dashboard.jsp">⬅ Back to Dashboard</a>
-    </div>
+  <a href="dashboard.jsp">⬅ Back to Dashboard</a>
 </body>
 </html>

@@ -1,116 +1,145 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Withdraw Money</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #f0f4f8, #e8f6f3);
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
     margin: 0;
 }
 
-.withdraw-container {
-    background-color: #ffffffcc;
-    padding: 35px 45px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    width: 350px;
-    text-align: center;
+.card {
+    background-color: #ffffff;
+    padding: 40px 45px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    width: 380px;
+    animation: fadeIn 0.8s ease-in-out;
 }
 
 h2 {
-    color: #FF6B6B;
-    font-size: 26px;
+    text-align: center;
+    color: #007bff;
     margin-bottom: 25px;
-}
-
-form p {
-    display: flex;
-    flex-direction: column;
-    margin: 15px 0;
+    font-size: 26px;
+    font-weight: 600;
 }
 
 label {
-    font-weight: 500;
+    display: block;
     margin-bottom: 6px;
+    font-weight: 500;
     color: #333;
-}
-
-input[type="text"],
-input[type="number"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
     font-size: 14px;
-    transition: 0.3s;
 }
 
-input[type="text"]:focus,
+input[type="text"], 
+input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus, 
 input[type="number"]:focus {
-    border-color: #FF6B6B;
-    box-shadow: 0 0 5px rgba(255,107,107,0.3);
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
     outline: none;
 }
 
 input[type="submit"] {
-    margin-top: 20px;
-    background: linear-gradient(135deg, #ff8a65, #ff7043);
+    width: 100%;
+    background: linear-gradient(135deg, #f44336, #d32f2f);
     color: white;
-    padding: 10px;
+    padding: 12px 15px;
     border: none;
     border-radius: 8px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 input[type="submit"]:hover {
-    background: linear-gradient(135deg, #ff7043, #ff5722);
+    background: linear-gradient(135deg, #d32f2f, #b71c1c);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
-/* Responsive */
-@media (max-width: 480px) {
-    .withdraw-container {
-        width: 90%;
-        padding: 30px 20px;
-    }
+.message {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
 
-    h2 {
-        font-size: 22px;
-    }
+.success { color: #28a745; }
+.failed { color: #dc3545; }
+.invalid { color: #ff9800; }
+
+.back-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.back-link a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
 <body>
-
-<div class="withdraw-container">
+<div class="card">
     <h2>Withdraw Money</h2>
-    <form action="" method="post">
-        <p>
-            <label for="accountNumber">Account Number:</label>
-            <input type="text" name="accountNumber" id="accountNumber" required>
-        </p>
 
-        <p>
-            <label for="amount">Amount:</label>
-            <input type="number" name="amount" id="amount" step="0.01" required>
-        </p>
+    <% String status = request.getParameter("status"); %>
+    <% if ("success".equals(status)) { %>
+        <p class="message success">Withdrawal successful!</p>
+    <% } else if ("failed".equals(status)) { %>
+        <p class="message failed">Withdrawal failed! Insufficient balance or account not found.</p>
+    <% } else if ("invalid".equals(status)) { %>
+        <p class="message invalid">Invalid input! Please enter numeric values.</p>
+    <% } %>
+
+    <form action="withdraw" method="post">
+        <label>Account Number:</label>
+        <input type="text" name="accountNumber" required>
+
+        <label>Amount:</label>
+        <input type="number" step="0.01" name="amount" required>
 
         <input type="submit" value="Withdraw">
     </form>
-</div>
 
+    <p class="back-link">
+        <a href="dashboard.jsp">⬅ Back to Dashboard</a>
+    </p>
+</div>
 </body>
 </html>

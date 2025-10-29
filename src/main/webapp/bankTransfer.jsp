@@ -2,135 +2,147 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bank Transfer</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
-/* Global Body */
 body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f0f2f5;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #e0f7fa, #f3e5f5);
-  background-image: url('https://images.unsplash.com/photo-1591696205602-869c6f5fbd8e?auto=format&fit=crop&w=1470&q=80');
-  background-size: cover;
-  background-blend-mode: overlay;
-  background-repeat: no-repeat;
-  background-position: center;
+  min-height: 100vh;
+  margin: 0;
 }
 
-/* Container */
 .transfer-container {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 45px 50px;
-  border-radius: 18px;
-  width: 400px;
+  background-color: #fff;
+  padding: 35px 45px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 380px;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.transfer-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.18);
-}
-
-/* Header */
 h2 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1e2a38;
-  margin-bottom: 35px;
-  letter-spacing: 1px;
+  color: #333;
+  font-size: 26px;
+  margin-bottom: 25px;
 }
 
-/* Form Elements */
 form p {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 15px 0;
+  justify-content: space-between;
+  margin: 12px 0;
+  text-align: left;
 }
 
 label {
   flex: 1;
-  font-weight: 500;
-  color: #1e2a38;
+  font-weight: bold;
+  color: #444;
   margin-right: 10px;
-  font-size: 15px;
 }
 
 input[type="text"],
 input[type="password"],
 input[type="number"] {
   flex: 2;
-  padding: 8px 10px;
-  border-radius: 10px;
+  padding: 6px;
   border: 1px solid #ccc;
-  font-size: 15px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.back-link {
+  margin-top: 20px;
+}
+
+.back-link a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+/* 🌈 Added Pinteresty professional enhancement (without changing existing code) */
+body {
+  background: linear-gradient(135deg, #f5f7fa, #e2ecf7);
+}
+
+.transfer-container {
+  background: linear-gradient(145deg, #ffffff, #f9f9f9);
+  border: 1px solid #e6e9ef;
+  transition: all 0.4s ease;
+}
+
+.transfer-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+h2 {
+  background: linear-gradient(90deg, #007bff, #00aaff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+  border: 1px solid #d0d6e2;
+  padding: 8px;
+  background: #f9fbff;
   transition: all 0.3s ease;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="number"]:focus {
-  border-color: #89c2d9;
-  box-shadow: 0 0 8px rgba(137, 194, 217, 0.4);
+  border-color: #007bff;
   outline: none;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.3);
 }
 
-/* Buttons */
 .btn {
-  display: inline-block;
-  background: #a8dadc; /* pastel teal */
-  color: #1e2a38;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-  font-size: 16px;
+  background: linear-gradient(90deg, #007bff, #00aaff);
+  box-shadow: 0 3px 6px rgba(0,123,255,0.3);
 }
 
 .btn:hover {
-  background: #89c2d9;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-/* Back Link */
-.back-link {
-  margin-top: 25px;
+  background: linear-gradient(90deg, #0056b3, #0080ff);
 }
 
 .back-link a {
-  text-decoration: none;
   color: #007bff;
-  font-weight: 500;
-  transition: 0.3s ease;
+  font-size: 14px;
+  transition: color 0.3s;
 }
 
 .back-link a:hover {
-  text-decoration: underline;
   color: #0056b3;
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(-20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-.transfer-container {
-  animation: fadeIn 0.6s ease forwards;
 }
 </style>
 </head>
@@ -160,7 +172,7 @@ input[type="number"]:focus {
       <input type="number" id="amount" name="amount" required>
     </p>
 
-    <p>
+    <p style="text-align:center;">
       <input type="submit" value="Transfer" class="btn">
     </p>
   </form>

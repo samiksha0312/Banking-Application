@@ -38,10 +38,10 @@ public class CreateAccount extends HttpServlet {
                 resp.sendRedirect("error500.jsp");
             }
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // log the error
             resp.sendRedirect("error500.jsp");
         } catch (Exception e) {
-            e.printStackTrace(); 
+            e.printStackTrace(); // log other unexpected errors
             resp.sendRedirect("error500.jsp");
         }
     }

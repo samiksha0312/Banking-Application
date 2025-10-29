@@ -4,124 +4,153 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - My Bank</title>
+<title>Login</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
+/* --- Page Background --- */
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to right, #e0f7fa, #f1f8e9);
-    overflow: hidden;
-    position: relative;
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
 }
 
+/* --- Decorative Pastel Glows --- */
 body::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: url('https://images.unsplash.com/photo-1605902711622-cfb43c4437a0?auto=format&fit=crop&w=1470&q=80') no-repeat center center;
-    background-size: cover;
-    opacity: 0.1;
-    z-index: 0;
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: rgba(162, 210, 255, 0.25);
+  border-radius: 50%;
+  top: 10%;
+  left: 15%;
+  z-index: 0;
+  filter: blur(70px);
+  animation: float 10s infinite ease-in-out alternate;
 }
 
+body::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  background: rgba(255, 182, 193, 0.25);
+  border-radius: 50%;
+  bottom: 10%;
+  right: 20%;
+  z-index: 0;
+  filter: blur(70px);
+  animation: float 12s infinite ease-in-out alternate-reverse;
+}
+
+/* --- Card Container --- */
 .login-container {
-    position: relative;
-    z-index: 1;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
-    padding: 40px 50px;
-    border-radius: 18px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-    width: 350px;
-    text-align: center;
-    animation: fadeIn 0.8s ease forwards;
+  background-color: #ffffff;
+  padding: 40px 50px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  width: 360px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
 }
 
+.login-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Heading --- */
 h2 {
-    font-size: 32px;
-    color: #1b262c;
-    margin-bottom: 25px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
 }
 
+/* --- Form Inputs --- */
 form p {
-    display: flex;
-    flex-direction: column;
-    margin: 15px 0;
-    text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px 0;
 }
 
 label {
-    margin-bottom: 6px;
-    font-weight: 500;
-    color: #333;
+  flex: 1;
+  text-align: left;
+  font-weight: 600;
+  color: #444;
+  font-size: 14px;
 }
 
 input[type="text"],
 input[type="password"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.3s;
+  flex: 2;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus {
-    border-color: #4fc3f7;
-    box-shadow: 0 0 8px rgba(79, 195, 247, 0.4);
+  border-color: #a1c4fd;
+  box-shadow: 0 0 6px rgba(161, 196, 253, 0.5);
+  outline: none;
 }
 
+/* --- Button --- */
 .btn {
-    background: linear-gradient(135deg, #81d4fa, #4fc3f7);
-    color: white;
-    padding: 12px 0;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    width: 100%;
-    margin-top: 15px;
+  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.4px;
 }
 
 .btn:hover {
-    background: linear-gradient(135deg, #4fc3f7, #29b6f6);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  transform: translateY(-3px);
 }
 
+/* --- Signup Link --- */
 .signup-link {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #555;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
 }
 
 .signup-link a {
-    color: #4fc3f7;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
 }
 
 .signup-link a:hover {
-    color: #0288d1;
-    text-decoration: underline;
+  color: #0056b3;
+  text-decoration: underline;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(-30px);}
-    to {opacity: 1; transform: translateY(0);}
+/* --- Floating Animation --- */
+@keyframes float {
+  from { transform: translateY(0px); }
+  to { transform: translateY(20px); }
 }
 </style>
 </head>
@@ -131,6 +160,7 @@ input[type="password"]:focus {
   <h2>Login</h2>
 
   <form action="LoginServlet" method="post">
+
     <p>
       <label for="accountNumber">Account Number:</label>
       <input type="text" id="accountNumber" name="accountNumber" required>
@@ -141,7 +171,7 @@ input[type="password"]:focus {
       <input type="password" id="pin" name="pin" required>
     </p>
 
-    <p>
+    <p style="text-align:center;">
       <input type="submit" value="Login" class="btn">
     </p>
   </form>

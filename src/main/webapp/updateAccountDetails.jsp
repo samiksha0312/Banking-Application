@@ -1,160 +1,195 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Update Account Details</title>
+    <title>Update Account Details</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap');
 
+/* --- Base Layout --- */
 body {
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #eef2f3 0%, #ffffff 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-.update-container {
-    background-color: #ffffffcc;
-    padding: 40px 50px;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    width: 400px;
+/* --- Card Container --- */
+.form-container {
+  background: #ffffff;
+  padding: 40px 45px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  width: 420px;
+  text-align: left;
+  animation: fadeIn 0.8s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.form-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.15);
+}
+
+/* --- Title --- */
 h2 {
-    text-align: center;
-    color: #007BFF;
-    font-size: 26px;
-    margin-bottom: 25px;
+  text-align: center;
+  color: #0072ff;
+  margin-bottom: 25px;
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: 0.5px;
 }
 
-form p {
-    display: flex;
-    flex-direction: column;
-    margin: 12px 0;
-}
-
+/* --- Labels --- */
 label {
-    font-weight: 500;
-    margin-bottom: 5px;
-    color: #444;
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: block;
+  color: #333;
+  font-size: 14px;
 }
 
+/* --- Inputs --- */
 input[type="text"],
 input[type="number"],
 input[type="email"],
 input[type="password"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: 0.3s;
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
 }
 
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
-    border-color: #007BFF;
-    box-shadow: 0 0 5px rgba(0,123,255,0.3);
-    outline: none;
+  border-color: #0072ff;
+  box-shadow: 0 0 6px rgba(0,114,255,0.4);
+  outline: none;
 }
 
-input[type="submit"] {
-    margin-top: 20px;
-    background: linear-gradient(135deg, #4fc3f7, #81d4fa);
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
+/* --- Submit Button --- */
+.btn-submit {
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-input[type="submit"]:hover {
-    background: linear-gradient(135deg, #29b6f6, #4fc3f7);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+.btn-submit:hover {
+  background: linear-gradient(90deg, #005ecb, #004494);
+  transform: translateY(-2px);
 }
 
-/* Responsive */
+/* --- Success/Error Message --- */
+.message {
+  text-align: center;
+  color: #2e7d32;
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* --- Back Link --- */
+.back-link {
+  text-align: center;
+  margin-top: 18px;
+}
+
+.back-link a {
+  text-decoration: none;
+  background: linear-gradient(90deg, #4b79a1, #283e51);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.back-link a:hover {
+  background: linear-gradient(90deg, #5a91c1, #345066);
+  transform: translateY(-2px);
+}
+
+/* --- Fade In Animation --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive Design --- */
 @media (max-width: 480px) {
-    .update-container {
-        width: 90%;
-        padding: 30px 20px;
-    }
-
-    h2 {
-        font-size: 22px;
-    }
+  .form-container {
+    width: 90%;
+    padding: 30px 25px;
+  }
+  h2 {
+    font-size: 22px;
+  }
 }
 </style>
 </head>
 <body>
-
-<div class="update-container">
+<div class="form-container">
     <h2>Update Account Details</h2>
-    <form action="" method="post">
-        <p>
-            <label for="accountNumber">Account Number:</label>
-            <input type="text" name="accountNumber" id="accountNumber" required>
-        </p>
+    <form action="updateAccountDetails" method="post">
+        <input type="hidden" name="action" value="updateAccount">
 
-        <p>
-            <label for="accountHolderName">Holder Name:</label>
-            <input type="text" name="accountHolderName" id="accountHolderName" required>
-        </p>
+        <label>Account Number</label>
+        <input type="text" name="accountNumber" required>
 
-        <p>
-            <label for="balance">Balance:</label>
-            <input type="number" step="0.01" name="balance" id="balance">
-        </p>
+        <label>Holder Name</label>
+        <input type="text" name="accountHolderName">
 
-        <p>
-            <label for="accountType">Account Type:</label>
-            <input type="text" name="accountType" id="accountType">
-        </p>
+        <label>Balance</label>
+        <input type="number" step="0.01" name="balance">
 
-        <p>
-            <label for="ifscCode">IFSC Code:</label>
-            <input type="text" name="ifscCode" id="ifscCode">
-        </p>
+        <label>Account Type</label>
+        <input type="text" name="accountType">
 
-        <p>
-            <label for="branchName">Branch Name:</label>
-            <input type="text" name="branchName" id="branchName">
-        </p>
+        <label>IFSC Code</label>
+        <input type="text" name="ifscCode">
 
-        <p>
-            <label for="address">Address:</label>
-            <input type="text" name="address" id="address">
-        </p>
+        <label>Branch Name</label>
+        <input type="text" name="branchName">
 
-        <p>
-            <label for="phone">Phone:</label>
-            <input type="text" name="phone" id="phone">
-        </p>
+        <label>Address</label>
+        <input type="text" name="address">
 
-        <p>
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email">
-        </p>
+        <label>Phone</label>
+        <input type="text" name="phone">
 
-        <p>
-            <label for="pin">PIN:</label>
-            <input type="password" name="pin" id="pin" required>
-        </p>
+        <label>Email</label>
+        <input type="email" name="email">
 
-        <input type="submit" value="Update Account">
+        <label>PIN</label>
+        <input type="password" name="pin">
+
+        <input type="submit" value="Update Account" class="btn-submit">
     </form>
-</div>
 
+    <p class="message">
+        <%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>
+    </p>
+    <p class="back-link">
+        <a href="dashboard.jsp">⬅ Back to Dashboard</a>
+    </p>
+</div>
 </body>
 </html>

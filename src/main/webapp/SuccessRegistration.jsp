@@ -1,96 +1,94 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Registration Successful</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
+/* --- Base Page Layout --- */
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #f0f4f8, #e3f2fd);
+	font-family: "Segoe UI", Arial, sans-serif;
+	background: linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+	text-align: center;
 }
 
-.success-container {
-    position: relative;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 40px 50px;
-    border-radius: 20px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-    animation: fadeIn 0.8s ease forwards;
+/* --- Success Message Container --- */
+.success-message {
+	background: #ffffff;
+	padding: 40px 50px;
+	border-radius: 16px;
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+	display: inline-block;
+	border-top: 6px solid #28a745;
+	transition: all 0.3s ease;
 }
 
-.success-container h2 {
-    font-size: 28px;
-    color: #28a745;
-    margin-bottom: 15px;
+.success-message:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
-.success-container p {
-    color: #333;
-    font-size: 16px;
-    margin-bottom: 15px;
+/* --- Header Styling --- */
+.success-message h2 {
+	color: #28a745;
+	font-size: 26px;
+	font-weight: 700;
+	margin-bottom: 15px;
 }
 
-.success-container a {
-    display: inline-block;
-    background: linear-gradient(135deg, #4fc3f7, #81d4fa);
-    color: white;
-    padding: 12px 25px;
-    border-radius: 12px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.3s ease;
+/* --- Text Styling --- */
+.success-message p {
+	color: #333;
+	font-size: 16px;
+	margin-bottom: 20px;
 }
 
-.success-container a:hover {
-    background: linear-gradient(135deg, #29b6f6, #4fc3f7);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+/* --- Link Styling --- */
+a {
+	background: linear-gradient(90deg, #4b79a1, #283e51);
+	color: #fff;
+	text-decoration: none;
+	padding: 10px 20px;
+	border-radius: 8px;
+	font-weight: 600;
+	transition: background 0.3s, transform 0.2s;
+	display: inline-block;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(-30px);}
-    to {opacity: 1; transform: translateY(0);}
+a:hover {
+	background: linear-gradient(90deg, #5a91c1, #345066);
+	transform: translateY(-2px);
 }
 
-/* Responsive adjustments */
+/* --- Responsive Design --- */
 @media (max-width: 480px) {
-    .success-container {
-        padding: 30px 20px;
-    }
-
-    .success-container h2 {
-        font-size: 24px;
-    }
-
-    .success-container a {
-        padding: 10px 20px;
-        font-size: 14px;
-    }
+	.success-message {
+		width: 90%;
+		padding: 30px 20px;
+	}
+	.success-message h2 {
+		font-size: 22px;
+	}
+	.success-message p {
+		font-size: 15px;
+	}
 }
 </style>
 </head>
 <body>
-
-<div class="success-container">
-    <h2>🎉 Registration Successful!</h2>
-    <p>Your account has been created successfully.</p>
-    <a href="login.jsp">Click here to login</a>
-</div>
-
+	<div class="success-message">
+		<h2>Registration Successful!</h2>
+		<p>Your account has been created successfully.</p>
+		<p>
+			<a href="login.jsp">Click here to login</a>
+		</p>
+	</div>
 </body>
 </html>

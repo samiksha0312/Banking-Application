@@ -3,55 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bank Dashboard</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
-/* Global Styles */
+<title>Dashboard</title>
+<style >
+/* ✅ Original Base Code */
 body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f3f4f6;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #d6e5f7, #f7f3ff);
-  background-image: url('https://images.unsplash.com/photo-1605902711622-cfb43c443b0f?auto=format&fit=crop&w=1470&q=80');
-  background-size: cover;
-  background-blend-mode: overlay;
-  background-repeat: no-repeat;
-  background-position: center;
+  height: 100vh;
+  margin: 0;
 }
 
-/* Dashboard Container */
 .dashboard-container {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  border-radius: 18px;
-  padding: 50px 40px;
-  width: 400px;
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 320px;
 }
 
-.dashboard-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-}
-
-/* Header */
 h2 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1e2a38;
-  margin-bottom: 40px;
+  font-size: 26px;
+  margin-bottom: 25px;
+  color: #222;
 }
 
-/* Menu List */
 .dashboard-menu {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
   margin: 0;
 }
@@ -60,79 +41,111 @@ h2 {
   margin: 15px 0;
 }
 
-/* Buttons with pastel colors */
 .dashboard-menu a {
   display: block;
-  padding: 14px 0;
-  border-radius: 12px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 0;
+  border-radius: 8px;
   text-decoration: none;
-  font-weight: 500;
-  color: #1e2a38;
-  background: #a8dadc; /* pastel teal */
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  transition: all 0.3s ease;
-  letter-spacing: 0.5px;
+  font-weight: bold;
+  transition: 0.3s ease;
 }
 
 .dashboard-menu a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-  background: #89c2d9; /* darker pastel on hover */
+  background-color: #0056b3;
+  transform: translateY(-2px);
 }
 
-/* Logout Button */
 .logout-btn {
-  background: #fcbf49; /* pastel orange */
+  background-color: #e63946 !important;
 }
 
 .logout-btn:hover {
-  background: #f9a03f;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  background-color: #c62828 !important;
 }
 
-/* Smooth fade-in animation */
+/* 🌸 Pinteresty Professional Theme Enhancements */
+body {
+  background: linear-gradient(135deg, #f6f9fc, #e9f1fb);
+}
+
+.dashboard-container {
+  background: linear-gradient(145deg, #ffffff, #fafafa);
+  border: 1px solid #e4e9f0;
+  transition: all 0.4s ease;
+}
+
+.dashboard-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+h2 {
+  background: linear-gradient(90deg, #007bff, #00aaff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.dashboard-menu a {
+  background: linear-gradient(90deg, #007bff, #00aaff);
+  box-shadow: 0 3px 6px rgba(0, 123, 255, 0.3);
+  letter-spacing: 0.3px;
+}
+
+.dashboard-menu a:hover {
+  background: linear-gradient(90deg, #0056b3, #0080ff);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.25);
+}
+
+.dashboard-menu li {
+  transition: transform 0.3s ease;
+}
+
+.dashboard-menu li:hover {
+  transform: scale(1.03);
+}
+
+.logout-btn {
+  background: linear-gradient(90deg, #ff4b5c, #e63946) !important;
+  box-shadow: 0 3px 6px rgba(255, 75, 92, 0.3);
+}
+
+.logout-btn:hover {
+  background: linear-gradient(90deg, #d62828, #c1121f) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(255, 75, 92, 0.25);
+}
+
+/* ✨ Subtle animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .dashboard-container {
-  animation: fadeIn 0.6s ease forwards;
-}
-
-/* Optional: Add subtle shadow to body elements for realism */
-.dashboard-menu a::after {
-  content: '';
-  display: block;
-  height: 4px;
-  width: 0%;
-  background: rgba(0,0,0,0.1);
-  border-radius: 2px;
-  margin: 4px auto 0 auto;
-  transition: width 0.3s ease;
-}
-
-.dashboard-menu a:hover::after {
-  width: 60%;
+  animation: fadeIn 0.6s ease-in-out;
 }
 </style>
 </head>
 <body>
 
 <div class="dashboard-container">
-  <h2>Welcome, User!</h2>
+  <h2>Welcome to Your Dashboard</h2>
 
   <ul class="dashboard-menu">
-    <li><a href="account.jsp">View Account</a></li>
-    <li><a href="bankTransfer.jsp">Transfer Money</a></li>
-    <li><a href="checkBalance.jsp">Check Balance</a></li>
-    <li><a href="DisplayTransaction">Transaction History</a></li>
-    <li><a href="deposit">Deposit</a></li>
-    <li><a href="withdraw">Withdraw</a></li>
-    <li><a href="updatePIN">Update PIN</a></li>
-    <li><a href="updateAccountDetails">Update Account Details</a></li>
-    <li><a href="logout.jsp" class="logout-btn">Logout</a></li>
+    <li><a href="account.jsp"> View Account</a></li>
+    <li><a href="bankTransfer.jsp"> Transfer Money</a></li>
+    <li><a href="checkBalannce.jsp"> Check Balance</a></li>
+    <li><a href="DisplayTransaction"> View Transaction History</a></li>
+    <li><a href="deposit.jsp"> Deposit</a></li>
+    <li><a href="withdraw.jsp"> Withdraw</a></li>
+    <li><a href="updatePIN.jsp"> Update PIN</a></li>
+    <li><a href="updateAccountDetails.jsp"> Update Account Details</a></li>
+    <li><a href="logout.jsp" class="logout-btn"> Logout</a></li>
   </ul>
 </div>
 
